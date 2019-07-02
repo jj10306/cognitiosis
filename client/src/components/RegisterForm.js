@@ -14,10 +14,9 @@ const RegisterForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post("localhost:5000", {
+        axios.post("http://localhost:5000", {
             name, email, username, password
         })
-        debugger;
     };
     const handleChange = (event, stateSetter) => {
         stateSetter(event.target.value);
@@ -26,7 +25,7 @@ const RegisterForm = () => {
     return (
         <div className="register-container">
             <div className="form-container">
-                <Form className={"register-form"} method={"POST"} onSubmit={handleSubmit}>
+                <Form className={"register-form"} onSubmit={handleSubmit}>
                     <Form.Group>
                         <Form.Label>Name</Form.Label>
                         <Form.Control name={"name"} type="text" placeholder="Jakob Johnson" onChange={(event) => handleChange(event, setName)} />

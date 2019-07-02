@@ -1,26 +1,29 @@
 import React from "react";
 import Particles from "react-particles-js";
 import { withRouter } from 'react-router-dom';
-
 import Button from "react-bootstrap/Button";
 
+import LoginForm from '../components/LoginForm'
 import { particles } from '../utils/constants';
 
 
 const HomePage = () => {
     return (
         <div className={"home-page-container"}>
-            <HomePane className="left-pane"
-                      content={<Particles params={particles}/>}
-            />
-            <HomePane className="right-pane" content={<Welcome/>} />
+            <HomePane className="left-pane">
+                <Particles params={particles}/>
+            </HomePane>
+            <HomePane className="right-pane">
+                <LoginForm/>
+                <Welcome/>
+            </HomePane>
             <Footer />
         </div>
     );
 }
 const HomePane = (props) => {
     return (
-        <div className={props.className}> {props.content} </div>
+        <div className={props.className}> {props.children} </div>
     );
 }
 const Footer = () => {

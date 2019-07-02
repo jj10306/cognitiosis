@@ -1,12 +1,13 @@
 const express = require('express');
+// const cors = require('cors');
 const router = express.Router();
 
+// router.use(cors());
+
 router.get('/', (req, res) => {
-    console.log(1);
     res.send('yo')
 });
 router.post('/', (req, res) => {
-    debugger;
     console.log(req.body);
     res.send('ho')
 });

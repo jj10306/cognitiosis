@@ -24,7 +24,7 @@
     display: grid;
     grid-template: 1fr 2fr 1fr / .75fr 2fr .75fr;
     grid-template-areas:
-            ". . ."
+            ". login-form ."
             ". welcome ."
             ". . .";
     .welcome-container {
@@ -42,7 +42,10 @@
     }
 
 }
-
+.login-form-container {
+    grid-area: login-form;
+    margin-top: 10px;
+}
 .footer {
     grid-area: footer;
     background-color: #0E1411;

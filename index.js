@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 //'mini apps' using express.Router() for modularity and independence of middleware
 const homepage = require('./routes/server/homepage')
@@ -17,21 +18,11 @@ mongoose
 
 const port = process.env.PORT || 5000;
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// sets res headers so browser allows cross-site requests form js script
+app.use(cors());
+app.use(express.json());
 
-app.get('/', function(req, res, next) {
-    // Handle the get for this route
-});
-
-app.post('/', function(req, res, next) {
-    debugger;
-});
-
-// app.use("/", homepage);
+app.use("/", homepage);
 
 app.listen(port, () => console.log(`server started on ${port}`));
 
