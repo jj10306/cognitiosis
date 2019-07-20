@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 
 import HomePage from './pages/HomePage'
 import FormPage from './pages/FormPage';
+import LandingPage from './pages/LandingPage'
 import RegisterForm from './components/RegisterForm';
 
 import './App.scss';
@@ -15,6 +16,7 @@ function App() {
             <>
                 <Route path="/" exact component={HomePage} />
                 <Route path="/register" exact component={RegisterForm} />
+                <Route path="/landing" exact component={LandingPage} />
             </>
         </Router>
     );

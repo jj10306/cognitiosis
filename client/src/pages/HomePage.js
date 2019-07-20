@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import Button from "react-bootstrap/Button";
 
 import LoginForm from '../components/LoginForm'
-import { particles } from '../utils/constants';
+import { particles } from '../utils/constants/particles';
 
 
 const HomePage = () => {
