@@ -19,15 +19,15 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    date: {
-        type: Date,
-        default: Date.now
-    }
+        date: {
+            type: Date,
+            default: Date.now
+        }
 
 
 });
 
 module.exports = {
     UserSchema,
-    User:  mongoose.model('user', UserSchema)
+    User:  mongoose.model('userData.js', UserSchema)
 };

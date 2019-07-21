@@ -8,7 +8,7 @@ const auth = require('../../../config/middleware/auth')
 const { User } = require('../../../models/User')
 
 router.get('/user', auth, (req, res) => {
-    User.findById(req.user.id)
+    User.findById(req.userData.id)
         .select("-password")
         .then(user => res.json(user));
 })

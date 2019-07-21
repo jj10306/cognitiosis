@@ -7,6 +7,10 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
+    author: {
+        type: String,
+        required: true
+    },
     title: {
         type: String,
         required: true
@@ -22,6 +26,10 @@ const PostSchema = new Schema({
     dislikes: {
         type: [UserSchema],
         required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 
 });
