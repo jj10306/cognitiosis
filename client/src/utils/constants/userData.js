@@ -36,7 +36,7 @@ const posts = [
     {
         username: "jj10306",
         author: "Jakob Johnson",
-        title: "asa benchode",
+        title: "miska banhode",
         content: "dooshkan brooshkan, sippo looshkan",
         likes: [users[1]],
         dislikes: [],

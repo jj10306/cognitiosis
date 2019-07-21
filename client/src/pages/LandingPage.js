@@ -1,34 +1,82 @@
 import React from 'react';
 
+import Nav from 'react-bootstrap/Nav'
 import { users, posts, profile } from "../utils/constants/userData"
-import {forEach} from "react-bootstrap/es/utils/ElementChildren";
+import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
 
+const PostInteraction = (props) => {
+    return (
+        <div className="interaction-container">
+            <div className="likes-container">
+                <FaThumbsUp/>
+                <p>4</p>
+            </div>
+
+            <div className="dislikes-container">
+                <FaThumbsDown/>
+                <p>5</p>
+            </div>
+        </div>
+    );
+
+}
 
 const PostMetaData = (props) => {
-    let { author, title, date } = props.data;
+    let { username, title, date } = props.data;
     return (
         <div className="post-meta-container">
-            <h1>{author}</h1>
-            <h2>{title}</h2>
-            <h3>{date}</h3>
+            <div className="left-container">
+                <p>{title}</p>
+            </div>
+            <div className="right-container">
+                <p> by <strong> {username}, </strong> </p>
+                <p> on <strong> {date} </strong> </p>
+            </div>
         </div>
     );
 }
 const Post = (props) => {
-    debugger;
     return (
         <div className="post-container">
             <PostMetaData data={props.data} />
-            <p>{props.data.content}</p>
+            <div className="content-container">
+                <p>{props.data.content}</p>
+            </div>
+            <PostInteraction />
 
         </div>
     );
 }
+const Feed = (props) => {
+    return (
+        <div className="feed-container">
+            {posts.map((post, ind) => {
+                return <Post key={ind} data={post} />
+            })}
+        </div>
+    );
+}
+const LandingPage = (props) => {
+    return (
 
-const LandingPage = () => {
-    return posts.map(post => {
-                return <Post data={post} />;
-            });
+        <div className="landing-page-container">
+            <Nav
+                activeKey="/home"
+                onSelect={selectedKey => alert(`selected ${selectedKey}`)}
+            >
+                <Nav.Item>
+                    <Nav.Link href="/home">Home</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-1">Link</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-2">Link</Nav.Link>
+                </Nav.Item>
+            </Nav>
+            <Feed/>
+        </div>
+    );
 
 
 }
