@@ -4,7 +4,7 @@ const config = require("config");
 const auth = (req, res, next) => {
     const token = req.header('x-auth-token');
 
-    if (!token) res.status(401).json({msg: 'No token, unauthorized user'});
+    if (!token) return res.status(401).json({msg: 'No token, unauthorized user'});
 
 
     try {
@@ -14,7 +14,7 @@ const auth = (req, res, next) => {
         req.user = decoded;
         next();
     } catch(exception) {
-        res.status(400).json({msg: "token is not valid"})
+        return res.status(400).json({msg: "token is not valid"})
     }
 
 }

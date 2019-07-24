@@ -11,9 +11,9 @@ const LoginForm = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post("http://localhost:5000", {
+        axios.post("http://localhost:5000/auth", {
             username, password
-        })
+        }).then(res => console.log(res.data))
     };
     const handleChange = (event, stateSetter) => {
         stateSetter(event.target.value);
