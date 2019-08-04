@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-const RegisterForm = () => {
+const RegisterForm = withRouter ((props) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    console.log(name);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         axios.post("http://localhost:5000", {
             name, email, username, password
-        })
+        }).then(res => props.history.push("/"))
     };
     const handleChange = (event, stateSetter) => {
         stateSetter(event.target.value);
@@ -51,6 +51,5 @@ const RegisterForm = () => {
         </div>
 
     );
-}
-
+})
 export default RegisterForm;

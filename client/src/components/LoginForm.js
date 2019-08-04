@@ -4,8 +4,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
+import { withRouter } from 'react-router-dom';
 
-const LoginForm = (props) => {
+import { connect } from "react-redux"
+
+import { login } from "../ducks/action_creators/login_action_creator";
+
+const LoginForm = withRouter((props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -13,7 +18,13 @@ const LoginForm = (props) => {
         event.preventDefault();
         axios.post("http://localhost:5000/auth", {
             username, password
-        }).then(res => console.log(res.data))
+        }).then(res => {
+            let { token, user } = res.data;
+            props.login(token, user, props.history.push);
+            props.history.push("landing");
+        }).catch(err => {
+            console.log("An error occured when trying to login" + err);
+        });
     };
     const handleChange = (event, stateSetter) => {
         stateSetter(event.target.value);
@@ -39,6 +50,8 @@ const LoginForm = (props) => {
             </Form>
         </div>
     );
-}
+})
 
-export default LoginForm;
+const mapDispatchToProps = { login };
+
+export default connect(null, mapDispatchToProps)(LoginForm);

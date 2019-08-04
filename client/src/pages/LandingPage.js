@@ -1,84 +1,61 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
-import Nav from 'react-bootstrap/Nav'
-import { users, posts, profile } from "../utils/constants/userData"
-import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import Loader from 'react-loader-spinner'
 
-const PostInteraction = (props) => {
+
+import PostModal from "../components/PostModal";
+import NavBar from "../components/NavBar";
+import Feed from "../components/Feed";
+import Post from "../components/Post";
+
+
+
+const LandingPage = withRouter ((props) => {
+
+    let [isTeaching, setIsTeaching] = useState(false);
+    let { activeJWT } = props;
+
+    useEffect(() => {
+        let isJwtPresent = activeJWT ? null : props.history.push("/");
+    })
     return (
-        <div className="interaction-container">
-            <div className="likes-container">
-                <FaThumbsUp/>
-                <p>4</p>
-            </div>
-
-            <div className="dislikes-container">
-                <FaThumbsDown/>
-                <p>5</p>
-            </div>
-        </div>
-    );
-
-}
-
-const PostMetaData = (props) => {
-    let { username, title, date } = props.data;
-    return (
-        <div className="post-meta-container">
-            <div className="left-container">
-                <p>{title}</p>
-            </div>
-            <div className="right-container">
-                <p> by <strong> {username}, </strong> </p>
-                <p> on <strong> {date} </strong> </p>
-            </div>
-        </div>
-    );
-}
-const Post = (props) => {
-    return (
-        <div className="post-container">
-            <PostMetaData data={props.data} />
-            <div className="content-container">
-                <p>{props.data.content}</p>
-            </div>
-            <PostInteraction />
-
-        </div>
-    );
-}
-const Feed = (props) => {
-    return (
-        <div className="feed-container">
-            {posts.map((post, ind) => {
-                return <Post key={ind} data={post} />
-            })}
-        </div>
-    );
-}
-const LandingPage = (props) => {
-    return (
-
         <div className="landing-page-container">
-            <Nav
-                activeKey="/home"
-                onSelect={selectedKey => alert(`selected ${selectedKey}`)}
-            >
-                <Nav.Item>
-                    <Nav.Link href="/home">Home</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="link-1">Link</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="link-2">Link</Nav.Link>
-                </Nav.Item>
-            </Nav>
-            <Feed/>
+            <NavBar setIsTeaching={setIsTeaching} />
+            {
+                props.isLoading
+                    ?
+                    <div className="loading-spinner">
+                        <Loader
+                            type="Puff"
+                            color="#28A745"
+                            height="500"
+                            width="500"
+                        />
+                    </div>
+                    : <>
+                        <Feed posts={props.allPosts} />
+                        <PostModal isTeaching={isTeaching} setIsTeaching={setIsTeaching} />
+                    </>
+
+            }
         </div>
     );
 
 
+
+
+})
+const mapStateToProps = state => {
+    return {
+        activeJWT: state.activeJWT,
+        allPosts: state.allPosts,
+        isLoading: state.isLoading,
+    }
 }
-export default LandingPage;
+
+
+export default connect(mapStateToProps)(LandingPage);
 

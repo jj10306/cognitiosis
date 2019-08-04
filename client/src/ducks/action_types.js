@@ -1,0 +1,10 @@
+const actionTypes = {
+    LOGIN_JWT: "LOGIN_JWT",
+    LOGIN_USER: "LOGIN_USER",
+    LOGIN_PROFILE: "LOGIN_PROFILE",
+    LOGIN_POSTS: "LOGIN_POSTS",
+    NEW_POST: "NEW_POST",
+    CHANGE_LOADING_STATUS: "CHANGE_LOADING_STATUS",
+};
+
+export default actionTypes;
