@@ -17,6 +17,7 @@ router.get('/user', auth, (req, res) => {
 router.post('/', (req, res) => {
     const { username, password } = req.body;
 
+    console.log(username, password);
     if (!username || !password) {
         return res.status(400).json({msg: "please enter all fields"});
     }
@@ -40,7 +41,7 @@ router.post('/', (req, res) => {
                         res.json({
                             token,
                             user: {
-                                id: user.id,
+                                username: user.username,
                                 name: user.name,
                                 email: user.email
                             }

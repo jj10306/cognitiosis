@@ -36,7 +36,7 @@ const LandingPage = withRouter ((props) => {
                         />
                     </div>
                     : <>
-                        <Feed posts={props.allPosts} />
+                        <Feed posts={props.allPosts} user={props.activeUser} />
                         <PostModal isTeaching={isTeaching} setIsTeaching={setIsTeaching} />
                     </>
 
@@ -53,6 +53,7 @@ const mapStateToProps = state => {
         activeJWT: state.activeJWT,
         allPosts: state.allPosts,
         isLoading: state.isLoading,
+        activeUser: state.activeUser,
     }
 }
 

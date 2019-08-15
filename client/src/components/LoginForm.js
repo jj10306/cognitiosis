@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 
 import { connect } from "react-redux"
 
+import { LOCAL_API_HOST } from "../utils/constants/api_config"
 import { login } from "../ducks/action_creators/login_action_creator";
 
 const LoginForm = withRouter((props) => {
@@ -16,7 +17,7 @@ const LoginForm = withRouter((props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post("http://localhost:5000/auth", {
+        axios.post(`${LOCAL_API_HOST}/auth`, {
             username, password
         }).then(res => {
             let { token, user } = res.data;
@@ -41,7 +42,7 @@ const LoginForm = withRouter((props) => {
                         <Form.Control type={"password"} placeholder="Password" onChange={(event) => handleChange(event, setPassword)} />
                     </Col>
                     <Col>
-                        <Button variant="primary" type="submit">
+                        <Button variant="success" type="submit">
                             Login
                         </Button>
                     </Col>

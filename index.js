@@ -5,7 +5,10 @@ const config = require('config');
 
 //'mini apps' using express.Router() for modularity and independence of middleware
 const homepage = require('./routes/api/homepage');
-const auth = require('./routes/api/auth/auth')
+const auth = require('./routes/api/auth/auth');
+const profiles = require('./routes/api/profiles')
+const posts = require('./routes/api/posts')
+const interaction = require('./routes/api/interaction')
 
 
 const app = express();
@@ -27,6 +30,9 @@ app.use(express.json());
 
 app.use("/", homepage);
 app.use("/auth", auth);
+app.use("/profiles", profiles);
+app.use("/posts", posts);
+app.use("/interaction", interaction);
 
 app.listen(port, () => console.log(`server started on ${port}`));
 

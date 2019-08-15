@@ -13,8 +13,10 @@ router.get('/', auth, (req, res) => {
 router.post('/', (req, res) => {
     const { name, email, username, password } = req.body;
 
+    console.log(req.body);
+
     if (!name || !email || !username || !password) {
-        return res.status(400).json({msg: "please enter all fields"});
+        return res.status(400).json({msg: "please enter all field"});
     }
 
     User.findOne({ username })
