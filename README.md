@@ -1,7 +1,7 @@
-# cognitiosiss: Knowledge Sharing Platform 
-'Social media' application that allows users to share a piece of knowledge they gained each day
+# cognitiosis
+Knowledge sharing 'social media' application that allows users to share random knowledge with others
 
-## Current state of the application - work in progress :hammer:
+## Current state of the application - work in progress! :hammer:
 
 ### Home Page
 ![Home Page](https://media.giphy.com/media/jsxw779JVXUGuTOsM9/giphy.gif)
@@ -15,6 +15,8 @@
 MERN Stack :boom:
 
 Frontend: React, React-Redux, Bootstrap, particles.js
+
 Backend: Node (Express)
+
 Database: MongoDB (Mongoose ODM)
 
